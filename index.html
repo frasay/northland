@@ -1,77 +1,520 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Tom &amp; Ella's Northland Road Trip Guide" property="og:title"/>
-<meta content="A complete 7-day itinerary for a Toyota Estima road trip up the east coast and down the west coast of Northland, New Zealand" property="og:description"/>
-<meta content="assets/img_1200x630_ae70bb61.png" property="og:image"/>
-<meta content="website" property="og:type"/>
-<link href="assets/sprite_64x64_3ad6f834.png" rel="icon" type="image/png"/>
-<title>Tom &amp; Ella's Northland Road Trip - 7 Day Itinerary</title>
-<script src="assets/script_d53f0b3b.js"></script>
-<script crossorigin="" src="assets/script_9272a50e.js"></script>
-<script crossorigin="" src="assets/script_74176401.js"></script>
-<script crossorigin="" src="assets/script_4fe6c195.js"></script>
-<link href="assets/style_00b0aac2.css" rel="stylesheet"/>
-<script crossorigin="" src="assets/script_5bc838d9.js"></script>
-<script src="assets/script_aa31c340.js"></script>
-<style>
-        @font-face {
-            font-family: 'Font Awesome 6 Free';
-            font-path: '/chat/webfonts/fa-regular-400';
-            src: url('/chat/webfonts/fa-regular-400.woff2') format('woff2'),
-                url('/chat/webfonts/fa-regular-400.ttf') format('truetype');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tom & Ella's Northland Road Trip - 7 Day Itinerary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone@7.10.3/babel.min.js" crossorigin></script>
+    <style>
+        * {
+            box-sizing: border-box;
         }
-        @font-face {
-            font-family: 'Font Awesome 6 Free';
-            font-path: '/chat/webfonts/fa-solid-900';
-            src: url('/chat/webfonts/fa-solid-900.woff2') format('woff2'),
-                url('/chat/webfonts/fa-solid-900.ttf') format('truetype');
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
     </style>
-<script>
-                window.load_data_from_csv = (filename) => {
-                    // Implementation needed when code is downloaded
-                };
-
-                window.save_data_to_csv = (filename, data) => {
-                    // Implementation needed when code is downloaded
-                };
-
-                window.call_llm = (system_prompt, user_messages, json_fields) => {
-                    // Implementation needed when code is downloaded
-                };
-            </script></head>
+</head>
 <body class="bg-gradient-to-br from-blue-50 to-emerald-50 min-h-screen">
-<div id="root"></div>
-<script type="text/babel">
+    <div id="root"></div>
+
+    <script type="text/babel">
         const { useState, useEffect } = React;
 
         const ItineraryApp = () => {
             const [selectedDay, setSelectedDay] = useState(1);
             const [activeTab, setActiveTab] = useState('itinerary');
 
-
+            // WEST COAST UP ROUTE (Default - as requested)
             const days = [
                 {
                     day: 1,
-                    title: "Auckland to Hokianga (West Coast)",
-                    distance: "200 km",
-                    driveTime: "3 hours",
-                    highlights: ["Kaipara Harbour", "Dargaville", "Wairere Boulders", "Hokianga Harbour"],
-                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=historic harbour town boats calm water golden hour New Zealand&w=800&h=400&style=realistic",
+                    title: "Auckland to Mangawhai (East Coast)",
+                    distance: "100 km",
+                    driveTime: "1.5 hours",
+                    highlights: ["Mangawhai Heads", "Cliff Walkway", "Matakana Village", "Surf Beach"],
+                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=cliff coastal walkway New Zealand pohutukawa trees ocean views&w=800&h=400&style=realistic",
                     stops: [
                         {
-                            name: "Kaipara Harbour",
+                            name: "Matakana Village",
+                            type: "stop",
+                            description: "Charming village north of Auckland. Perfect coffee stop and farmers market (weekends). Great deli and bakery for road trip supplies."
+                        },
+                        {
+                            name: "Mangawhai Heads",
+                            type: "highlight",
+                            description: "Beautiful surf beach with great vibes. Home to one of NZ's most spectacular coastal walkways."
+                        },
+                        {
+                            name: "Mangawhai Cliffs Walkway",
+                            type: "walk",
+                            difficulty: "Easy to Moderate",
+                            time: "2-3 hours loop",
+                            description: "One of NZ's most beautiful coastal walks. Views from Bream Head to Coromandel Peninsula. Check tide times - beach return only at low tide!"
+                        },
+                        {
+                            name: "Sunset at Mangawhai",
+                            type: "highlight",
+                            description: "Watch the sun set over the ocean from the headland or beach. Great first night atmosphere."
+                        }
+                    ],
+                    camping: [
+                        {
+                            name: "Mangawhai Heads Campground",
+                            type: "Holiday Park",
+                            cost: "$15-20/night",
+                            facilities: "Showers, toilets, kitchen, beachfront",
+                            note: "Right on the beach - perfect first night spot with all facilities"
+                        }
+                    ]
+                },
+                {
+                    day: 2,
+                    title: "Mangawhai to Whangarei",
+                    distance: "85 km",
+                    driveTime: "1.25 hours",
+                    highlights: ["Whangarei Falls", "AH Reed Memorial Park", "Mount Manaia Track", "Town Basin"],
+                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=waterfall cascading over basalt cliffs tropical forest New Zealand&w=800&h=400&style=realistic",
+                    stops: [
+                        {
+                            name: "Matapouri Bay (optional)",
+                            type: "stop",
+                            description: "Beautiful bay with the famous 'Mermaid Pools' (check tide). Worth the short detour if time permits."
+                        },
+                        {
+                            name: "Whangarei Falls",
+                            type: "walk",
+                            difficulty: "Easy",
+                            time: "15 min loop",
+                            description: "26.3m high waterfall cascading over basalt cliffs. Easy circular walk with upper and lower viewing platforms. Iconic Northland spot."
+                        },
+                        {
+                            name: "AH Reed Memorial Park",
+                            type: "stop",
+                            description: "Beautiful park with canopy walkway through native forest. Connected to Whangarei Falls via walkways."
+                        },
+                        {
+                            name: "Whangarei Town Basin",
+                            type: "stop",
+                            description: "Waterfront dining precinct with cafes, galleries, and shops. Great for lunch and a wander."
+                        },
+                        {
+                            name: "Mount Manaia Track (optional)",
+                            type: "walk",
+                            difficulty: "Moderate",
+                            time: "2-3 hours return",
+                            description: "Steep climb with spectacular volcanic rock formations at the summit. Panoramic views of Whangarei Harbour. Do this afternoon or next morning."
+                        }
+                    ],
+                    camping: [
+                        {
+                            name: "Whangarei Falls Scenic Reserve",
+                            type: "Freedom Camping",
+                            cost: "Free",
+                            facilities: "Toilets (closed overnight), 2 spaces only",
+                            note: "Very limited - first come first served. Single night only. Backup option."
+                        },
+                        {
+                            name: "Whangarei Central Holiday Park",
+                            type: "Holiday Park",
+                            cost: "$20-28/night",
+                            facilities: "Full facilities, WiFi, kitchen",
+                            note: "More reliable option with all amenities in town"
+                        }
+                    ]
+                },
+                {
+                    day: 3,
+                    title: "Whangarei to Bay of Islands",
+                    distance: "75 km",
+                    driveTime: "1 hour",
+                    highlights: ["Waitangi Treaty Grounds", "Paihia Waterfront", "Russell Ferry", "Haruru Falls"],
+                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=Bay of Islands New Zealand turquoise water sailboats historic buildings&w=800&h=400&style=realistic",
+                    stops: [
+                        {
+                            name: "Waitangi Treaty Grounds",
+                            type: "highlight",
+                            description: "Historic site where NZ's founding document was signed. Cultural performances, excellent museum, and beautiful grounds. Allow 2-3 hours. Entry ~$50pp."
+                        },
+                        {
+                            name: "Haruru Falls",
+                            type: "stop",
+                            description: "Scenic waterfall just outside Paihia. Short walk to viewing platform. Nice spot for photos."
+                        },
+                        {
+                            name: "Paihia",
+                            type: "highlight",
+                            description: "Main tourist hub of Bay of Islands. Waterfront restaurants, shops, and departure point for boat trips to islands."
+                        },
+                        {
+                            name: "Russell by Ferry",
+                            type: "stop",
+                            description: "Take the passenger ferry ($14 return) to charming historic Russell - NZ's first capital. Lovely cafes, beaches, and historic buildings."
+                        },
+                        {
+                            name: "Sunset in Paihia",
+                            type: "highlight",
+                            description: "Enjoy dinner at one of the waterfront restaurants and watch the boats come in."
+                        }
+                    ],
+                    camping: [
+                        {
+                            name: "Waitangi Holiday Park",
+                            type: "Holiday Park",
+                            cost: "$20-30/night",
+                            facilities: "Kitchen, showers, laundry, WiFi, riverfront",
+                            note: "On Waitangi River, walkable to Treaty Grounds. Great facilities and location."
+                        },
+                        {
+                            name: "Bay of Islands Campervan Park",
+                            type: "Holiday Park",
+                            cost: "$22-28/night",
+                            facilities: "Olive grove setting, WiFi, kitchen, showers",
+                            note: "Short walk to Paihia Beach, quieter setting"
+                        }
+                    ]
+                },
+                {
+                    day: 4,
+                    title: "Bay of Islands to Karikari Peninsula",
+                    distance: "130 km",
+                    driveTime: "2 hours",
+                    highlights: ["Matai Bay", "Karikari Peninsula", "Doubtless Bay", "Cable Bay"],
+                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=white sand beach clear turquoise water pohutukawa trees Northland New Zealand&w=800&h=400&style=realistic",
+                    stops: [
+                        {
+                            name: "Doubtless Bay Scenic Drive",
                             type: "drive",
-                            description: "Scenic drive around one of the world's largest harbours with dramatic coastal views."
+                            description: "Beautiful coastal drive through Taipa, Cable Bay, and Coopers Beach. Take your time exploring the beaches."
+                        },
+                        {
+                            name: "Coopers Beach & Cable Bay",
+                            type: "stop",
+                            description: "Lovely swimming beaches with great coastal scenery. Perfect for a mid-drive break."
+                        },
+                        {
+                            name: "Matai Bay",
+                            type: "highlight",
+                            description: "Stunning white sand beach with crystal clear turquoise water. Perfect for snorkeling and swimming. Truly spectacular!"
+                        },
+                        {
+                            name: "Maitai Bay Headland Track",
+                            type: "walk",
+                            difficulty: "Moderate",
+                            time: "1.5 hours loop",
+                            description: "Track around the headland with spectacular coastal views. Great for spotting marine life and enjoying the panorama."
+                        },
+                        {
+                            name: "Karikari Peninsula",
+                            type: "stop",
+                            description: "Beautiful remote peninsula with multiple stunning beaches including Puheke Beach (pink sands) and Tokerau Beach."
+                        }
+                    ],
+                    camping: [
+                        {
+                            name: "Matai Bay Campsite",
+                            type: "DOC Campsite",
+                            cost: "$18/night adults, $9 children",
+                            facilities: "Toilets, water, beachfront, no power",
+                            note: "Beautiful beachfront camping among pohutukawa trees. Book online in peak season - very popular!"
+                        },
+                        {
+                            name: "Tokerau Beach Freedom Camping",
+                            type: "Freedom Camping",
+                            cost: "Free",
+                            facilities: "Basic toilets",
+                            note: "Self-contained vehicles only. Alternative if Matai Bay is full."
+                        }
+                    ]
+                },
+                {
+                    day: 5,
+                    title: "Karikari to Cape Reinga",
+                    distance: "110 km",
+                    driveTime: "1.5 hours",
+                    highlights: ["Cape Reinga", "Te Paki Sand Dunes", "Tapotupotu Bay", "Ninety Mile Beach"],
+                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=lighthouse on cliff edge meeting of oceans Cape Reinga New Zealand dramatic&w=800&h=400&style=realistic",
+                    stops: [
+                        {
+                            name: "Ninety Mile Beach",
+                            type: "stop",
+                            description: "Can drive on the beach at specific access points (4WD recommended, check tides carefully). Alternatively view from the road at various points."
+                        },
+                        {
+                            name: "Te Paki Stream Sand Dunes",
+                            type: "highlight",
+                            description: "Famous giant sand dunes for sandboarding! Rent boogie boards from local operators. Iconic Northland experience - don't miss!"
+                        },
+                        {
+                            name: "Tapotupotu Bay",
+                            type: "stop",
+                            description: "Beautiful sheltered bay just 3km before Cape Reinga. Great for a swim and picnic lunch."
+                        },
+                        {
+                            name: "Cape Reinga / Te Rerenga Wairua",
+                            type: "highlight",
+                            description: "Sacred northernmost point of NZ where Tasman Sea and Pacific Ocean meet. Iconic lighthouse and immense cultural significance."
+                        },
+                        {
+                            name: "Tapotupotu Bay to Cape Reinga Track",
+                            type: "walk",
+                            difficulty: "Moderate",
+                            time: "1.5-2 hours",
+                            description: "5km coastal track with stunning ocean views. Part of the Te Paki Coastal Track. Great way to approach the lighthouse."
+                        }
+                    ],
+                    camping: [
+                        {
+                            name: "Tapotupotu Bay Campsite",
+                            type: "DOC Campsite",
+                            cost: "$10-15/night",
+                            facilities: "Toilets, cold showers, beach access",
+                            note: "Beautiful beach 3km from Cape Reinga. Book online in peak season."
+                        },
+                        {
+                            name: "Spirits Bay (Kapowairua) Campsite",
+                            type: "DOC Campsite",
+                            cost: "$10/night",
+                            facilities: "Basic toilets",
+                            note: "More remote option at sacred Maori spiritual site. 8.5km walking path along the bay."
+                        }
+                    ]
+                },
+                {
+                    day: 6,
+                    title: "Cape Reinga to Opononi (West Coast)",
+                    distance: "140 km",
+                    driveTime: "2.5 hours",
+                    highlights: ["Waipoua Forest", "Tane Mahuta", "Te Matua Ngahere", "Waiotemarama Waterfall"],
+                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=massive ancient kauri tree towering in rainforest New Zealand&w=800&h=400&style=realistic",
+                    stops: [
+                        {
+                            name: "Scenic Drive South",
+                            type: "drive",
+                            description: "Beautiful drive through rural Northland and forested areas. Stop at Kaitaia for supplies if needed."
+                        },
+                        {
+                            name: "Waipoua Forest",
+                            type: "highlight",
+                            description: "Ancient kauri forest - one of the most significant in the world. Home to NZ's largest trees. Clean shoes at kauri dieback stations."
+                        },
+                        {
+                            name: "Tane Mahuta Walk",
+                            type: "walk",
+                            difficulty: "Easy",
+                            time: "5 minutes",
+                            description: "NZ's largest known kauri tree. 2,000+ years old, 51m tall, 13.8m girth. Short easy walk from main road - truly awe-inspiring."
+                        },
+                        {
+                            name: "Te Matua Ngahere Walk",
+                            type: "walk",
+                            difficulty: "Easy",
+                            time: "20 minutes return",
+                            description: "'Father of the Forest' - second largest kauri. Beautiful 20-minute return walk through pristine forest."
+                        },
+                        {
+                            name: "Waiotemarama Waterfall Walk",
+                            type: "walk",
+                            difficulty: "Easy",
+                            time: "1 hour",
+                            description: "Beautiful bush walk to a waterfall near the Hokianga Harbour. Great for a cooling swim in pristine waters."
+                        },
+                        {
+                            name: "Opononi",
+                            type: "stop",
+                            description: "Harbour town famous for Opo the friendly dolphin (1950s). Great base for exploring the Hokianga and sand dunes."
+                        }
+                    ],
+                    camping: [
+                        {
+                            name: "Waipoua Campground",
+                            type: "DOC Campsite",
+                            cost: "$10-15/night",
+                            facilities: "Toilets, river access",
+                            note: "Next to Waipoua River, perfect for early morning/late evening visits to Tane Mahuta to avoid crowds."
+                        },
+                        {
+                            name: "Opononi Holiday Park",
+                            type: "Holiday Park",
+                            cost: "$18-25/night",
+                            facilities: "Full facilities, waterfront, kitchen, showers",
+                            note: "Great harbour views and perfect base for sand dune adventures tomorrow."
+                        }
+                    ]
+                },
+                {
+                    day: 7,
+                    title: "Hokianga to Auckland (West Coast)",
+                    distance: "220 km",
+                    driveTime: "3-3.5 hours",
+                    highlights: ["Hokianga Sand Dunes", "Koutu Boulders", "Wairere Boulders", "Dargaville"],
+                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=spherical boulders on beach at low tide New Zealand unique geology&w=800&h=400&style=realistic",
+                    stops: [
+                        {
+                            name: "Hokianga Sand Dunes",
+                            type: "highlight",
+                            description: "Take water taxi from Opononi to massive sand dunes for sandboarding. Less crowded than Te Paki dunes - more relaxed experience!"
+                        },
+                        {
+                            name: "Koutu Boulders",
+                            type: "stop",
+                            description: "Spectacular spherical boulders like Moeraki but much less known. Best viewed at low tide. 10 min drive from Opononi."
+                        },
+                        {
+                            name: "Manea Footprints of Kupe",
+                            type: "stop",
+                            description: "Cultural centre telling the story of Polynesian navigator Kupe through 4D sensory experience. Entry fee applies."
+                        },
+                        {
+                            name: "Rawene Village & Ferry",
+                            type: "stop",
+                            description: "Historic village - NZ's 3rd oldest European settlement. Take the car ferry across Hokianga Harbour."
+                        },
+                        {
+                            name: "Wairere Boulders Nature Park",
+                            type: "walk",
+                            difficulty: "Easy",
+                            time: "1-2 hours",
+                            description: "Valley walk through unique basalt boulder formations with bouncy moss. Entry fee ~$15pp."
                         },
                         {
                             name: "Dargaville",
                             type: "stop",
-                            description: "The kumara capital. Good spot for supplies and to visit the Kumara Box attraction."
+                            description: "The kumara capital. Good spot for lunch, fuel, and supplies before the drive back to Auckland via SH12."
+                        },
+                        {
+                            name: "Return to Auckland",
+                            type: "highlight",
+                            description: "Drive south via State Highway 12 through scenic rural landscapes. Arrive Auckland evening after an epic loop!"
+                        }
+                    ],
+                    camping: [
+                        {
+                            name: "Home Sweet Home!",
+                            type: "end",
+                            cost: "N/A",
+                            facilities: "Your own bed!",
+                            note: "Return to Auckland by evening after an epic 7-day Northland loop. Unpack, shower, and start planning the next trip!"
+                        }
+                    ]
+                }
+            ];
+
+            // EAST COAST UP (Reverse route option)
+            const reversedDays = [
+                {
+                    day: 1,
+                    title: "Auckland to Kai Iwi Lakes (Acclimatisation Day 1)",
+                    distance: "180 km",
+                    driveTime: "2.5 hours",
+                    highlights: ["Kai Iwi Lakes", "Taharoa Domain", "Lake Taharoa", "Acclimatisation"],
+                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=serene freshwater lake surrounded by pine forest camping New Zealand peaceful morning&w=800&h=400&style=realistic",
+                    stops: [
+                        {
+                            name: "Drive North via State Highway 12",
+                            type: "drive",
+                            description: "Leisurely drive north through Wellsford and Dargaville area. Take your time getting used to the van."
+                        },
+                        {
+                            name: "Kai Iwi Lakes / Taharoa Domain",
+                            type: "highlight",
+                            description: "Three pristine freshwater lakes - Lake Taharoa (largest), Lake Waikere, and Lake Kai Iwi. Perfect for your first camp!"
+                        },
+                        {
+                            name: "Lake Taharoa",
+                            type: "stop",
+                            description: "The main lake with beautiful clear freshwater. Great for swimming and kayaking. Much warmer than the ocean!"
+                        },
+                        {
+                            name: "Set Up Camp & Relax",
+                            type: "stop",
+                            description: "First night in the Estima! Take time to set up your sleeping area, test all systems, and settle into van life."
+                        }
+                    ],
+                    camping: [
+                        {
+                            name: "Pine Beach Campground (Kai Iwi Lakes)",
+                            type: "DOC Campsite",
+                            cost: "$15/night adults, $7.50 children",
+                            facilities: "Toilets, water tap, boat ramp, no power",
+                            note: "Beautiful lakeside camping among pines. Very popular in summer - perfect first camp spot!"
+                        },
+                        {
+                            name: "Promenade Point Campground",
+                            type: "DOC Campsite",
+                            cost: "$15/night",
+                            facilities: "Toilets, lake access",
+                            note: "Smaller and quieter option on Lake Taharoa"
+                        }
+                    ]
+                },
+                {
+                    day: 2,
+                    title: "Kai Iwi Lakes - Rest & Explore (Acclimatisation Day 2)",
+                    distance: "0 km (local)",
+                    driveTime: "No driving",
+                    highlights: ["Lake Swimming", "Kayaking", "Short Walks", "Van Life Practice"],
+                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=kayaking on calm freshwater lake pine trees shore summer New Zealand&w=800&h=400&style=realistic",
+                    stops: [
+                        {
+                            name: "Morning Swim at Lake Taharoa",
+                            type: "stop",
+                            description: "Wake up and dive into the crystal clear freshwater. Much warmer and calmer than the ocean!"
+                        },
+                        {
+                            name: "Lake Taharoa Walk",
+                            type: "walk",
+                            difficulty: "Easy",
+                            time: "2-3 hours one way",
+                            description: "Walk from Pine Beach to Promenade Point along the lake edge. Great for stretching legs and bird watching."
+                        },
+                        {
+                            name: "Kayak Hire (seasonal)",
+                            type: "stop",
+                            description: "Rent kayaks locally to explore the interconnected lakes. The water here is incredibly clear."
+                        },
+                        {
+                            name: "Practice Van Cooking & Setup",
+                            type: "stop",
+                            description: "Use this full day to practice your camping routine - cooking in the van, organising gear, finding your rhythm."
+                        },
+                        {
+                            name: "Sunset at the Lake",
+                            type: "highlight",
+                            description: "Enjoy a peaceful evening by the water. Watch the sunset over the pines and get a good night's rest before the journey north."
+                        }
+                    ],
+                    camping: [
+                        {
+                            name: "Pine Beach Campground (2nd Night)",
+                            type: "DOC Campsite",
+                            cost: "$15/night",
+                            facilities: "Same as previous night",
+                            note: "Second night here before heading to Northland proper. Rest up for the adventures ahead!"
+                        }
+                    ]
+                },
+                {
+                    day: 3,
+                    title: "Kai Iwi Lakes to Hokianga (West Coast)",
+                    distance: "120 km",
+                    driveTime: "2 hours",
+                    highlights: ["Dargaville", "Wairere Boulders", "Hokianga Harbour", "Opononi"],
+                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=historic harbour town boats calm water golden hour New Zealand&w=800&h=400&style=realistic",
+                    stops: [
+                        {
+                            name: "Dargaville",
+                            type: "stop",
+                            description: "The kumara capital. Good spot for supplies and fuel before heading to the coast."
                         },
                         {
                             name: "Wairere Boulders Nature Park",
@@ -109,7 +552,7 @@
                     ]
                 },
                 {
-                    day: 2,
+                    day: 4,
                     title: "Hokianga to Waipoua Forest",
                     distance: "60 km",
                     driveTime: "1 hour",
@@ -176,7 +619,7 @@
                     ]
                 },
                 {
-                    day: 3,
+                    day: 5,
                     title: "Waipoua to Cape Reinga",
                     distance: "140 km",
                     driveTime: "2 hours",
@@ -219,16 +662,16 @@
                             type: "DOC Campsite",
                             cost: "$10/night",
                             facilities: "Basic toilets",
-                            note: "Remote and beautiful. Māori spiritual site with 8.5km walking path along the bay."
+                            note: "Remote and beautiful. Maori spiritual site with 8.5km walking path along the bay."
                         }
                     ]
                 },
                 {
-                    day: 4,
-                    title: "Cape Reinga to Karikari Peninsula",
-                    distance: "110 km",
-                    driveTime: "1.5 hours",
-                    highlights: ["Ninety Mile Beach", "Matai Bay", "Karikari Peninsula", "Doubtless Bay"],
+                    day: 6,
+                    title: "Cape Reinga to Bay of Islands (East Coast)",
+                    distance: "240 km",
+                    driveTime: "3.5 hours",
+                    highlights: ["Ninety Mile Beach", "Matai Bay", "Karikari Peninsula", "Waitangi", "Paihia"],
                     image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=endless white sand beach turquoise water Northland pristine&w=800&h=400&style=realistic",
                     stops: [
                         {
@@ -252,33 +695,7 @@
                             name: "Doubtless Bay",
                             type: "drive",
                             description: "Scenic drive through quaint coastal settlements like Taipa and Cable Bay."
-                        }
-                    ],
-                    camping: [
-                        {
-                            name: "Matai Bay Campsite",
-                            type: "DOC Campsite",
-                            cost: "$18/night adults, $9 children",
-                            facilities: "Toilets, basic facilities",
-                            note: "Beachfront, first-come first-served. VERY popular - arrive early in peak season!"
                         },
-                        {
-                            name: "Rangiputa Beach",
-                            type: "Freedom Camping",
-                            cost: "Free",
-                            facilities: "Toilets",
-                            note: "Beautiful backup option nearby if Matai Bay is full"
-                        }
-                    ]
-                },
-                {
-                    day: 5,
-                    title: "Karikari to Bay of Islands",
-                    distance: "130 km",
-                    driveTime: "2 hours",
-                    highlights: ["Doubtless Bay", "Paihia", "Waitangi", "Russell"],
-                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=historic waterfront buildings boats dock sunny day New Zealand town&w=800&h=400&style=realistic",
-                    stops: [
                         {
                             name: "Waitangi Treaty Grounds",
                             type: "highlight",
@@ -288,23 +705,6 @@
                             name: "Paihia",
                             type: "highlight",
                             description: "Main tourist hub of Bay of Islands. Waterfront restaurants, shops, and departure point for boat trips."
-                        },
-                        {
-                            name: "Russell",
-                            type: "highlight",
-                            description: "Take the passenger ferry ($14 return) to charming historic Russell. First NZ capital with lovely cafes and beaches."
-                        },
-                        {
-                            name: "Haruru Falls",
-                            type: "stop",
-                            description: "Scenic waterfall just outside Paihia. Nice short walk to viewing platform."
-                        },
-                        {
-                            name: "Urupukapuka Island",
-                            type: "walk",
-                            difficulty: "Easy to Moderate",
-                            time: "Various",
-                            description: "Take ferry to this beautiful island with walking tracks and beaches. Great day trip option if time allows."
                         }
                     ],
                     camping: [
@@ -321,24 +721,27 @@
                             cost: "$22-28/night",
                             facilities: "Olive grove setting, WiFi, kitchen",
                             note: "Short walk to Paihia Beach"
-                        },
-                        {
-                            name: "Bland Bay (Freedom Camping)",
-                            type: "Freedom Camping",
-                            cost: "Free",
-                            facilities: "Limited facilities",
-                            note: "40 min drive from Paihia, beautiful remote spot"
                         }
                     ]
                 },
                 {
-                    day: 6,
-                    title: "Bay of Islands to Whangarei",
-                    distance: "75 km",
-                    driveTime: "1 hour",
-                    highlights: ["Haruru Falls", "Whangarei Falls", "Mount Manaia", "Te Whara Track"],
-                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=mountain summit view ocean islands volcanic rock formations&w=800&h=400&style=realistic",
+                    day: 7,
+                    title: "Bay of Islands to Auckland via Whangarei",
+                    distance: "235 km",
+                    driveTime: "3.5 hours",
+                    highlights: ["Russell", "Whangarei Falls", "Mangawhai Cliffs", "Matakana"],
+                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=waterfall cascading over basalt cliffs tropical forest New Zealand&w=800&h=400&style=realistic",
                     stops: [
+                        {
+                            name: "Russell",
+                            type: "highlight",
+                            description: "Take the passenger ferry ($14 return) to charming historic Russell. First NZ capital with lovely cafes and beaches."
+                        },
+                        {
+                            name: "Haruru Falls",
+                            type: "stop",
+                            description: "Scenic waterfall just outside Paihia. Nice short walk to viewing platform."
+                        },
                         {
                             name: "Whangarei Falls",
                             type: "walk",
@@ -347,52 +750,12 @@
                             description: "26.3m high waterfall cascading over basalt cliffs. Easy circular walk with viewing platforms."
                         },
                         {
-                            name: "AH Reed Memorial Park",
-                            type: "walk",
-                            difficulty: "Easy",
-                            time: "Various loops",
-                            description: "Canopy walkway through kauri forest. Dogs allowed on leash in some areas."
-                        },
-                        {
                             name: "Mount Manaia Track",
                             type: "walk",
                             difficulty: "Moderate",
                             time: "2-3 hours return",
-                            description: "Steep climb to summit with panoramic views of Whangarei Harbour. Spectacular volcanic rock formations."
+                            description: "If time permits - steep climb to summit with panoramic views of Whangarei Harbour. Spectacular volcanic rock formations."
                         },
-                        {
-                            name: "Te Whara Track (Ocean Beach)",
-                            type: "walk",
-                            difficulty: "Moderate",
-                            time: "3-4 hours",
-                            description: "Coastal ridge walk with extinct volcanic pinnacles. Great alternative if you have time."
-                        }
-                    ],
-                    camping: [
-                        {
-                            name: "Whangarei Falls Scenic Reserve",
-                            type: "Freedom Camping",
-                            cost: "Free",
-                            facilities: "Toilets (closed overnight)",
-                            note: "Only 2 spaces available, single night only. First come first served."
-                        },
-                        {
-                            name: "Whangarei Central Holiday Park",
-                            type: "Holiday Park",
-                            cost: "$18-25/night",
-                            facilities: "Full facilities, kitchen, showers",
-                            note: "Convenient base for exploring all the local walks"
-                        }
-                    ]
-                },
-                {
-                    day: 7,
-                    title: "Whangarei to Auckland (East Coast)",
-                    distance: "160 km",
-                    driveTime: "2.5 hours",
-                    highlights: ["Mangawhai Cliffs", "Matakana", "Coastal Drive"],
-                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=coastal highway scenic drive pohutukawa trees ocean views&w=800&h=400&style=realistic",
-                    stops: [
                         {
                             name: "Mangawhai Heads",
                             type: "highlight",
@@ -420,11 +783,11 @@
                             note: "Beachfront location - great final night if not rushing back"
                         },
                         {
-                            name: "Freedom Camping - Pataua South",
+                            name: "Whangarei Falls Scenic Reserve",
                             type: "Freedom Camping",
                             cost: "Free",
-                            facilities: "Toilets nearby",
-                            note: "Self-contained vehicles only. Beautiful estuary spot."
+                            facilities: "Toilets (closed overnight)",
+                            note: "Only 2 spaces available, single night only. First come first served."
                         },
                         {
                             name: "Home!",
@@ -435,283 +798,158 @@
                 }
             ];
 
-            const reversedDays = [
-                {
-                    day: 1,
-                    title: "Auckland to Mangawhai (East Coast)",
-                    distance: "100 km",
-                    driveTime: "1.5 hours",
-                    highlights: ["Mangawhai Heads Cliff Walk", "Matakana Village", "Coastal Views"],
-                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=cliff coastal walkway New Zealand pohutukawa trees ocean views&w=800&h=400&style=realistic"
-                },
-                {
-                    day: 2,
-                    title: "Mangawhai to Whangarei",
-                    distance: "85 km",
-                    driveTime: "1.25 hours",
-                    highlights: ["Whangarei Falls", "AH Reed Memorial Park", "Mount Manaia Track"],
-                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=waterfall cascading over basalt cliffs tropical forest New Zealand&w=800&h=400&style=realistic"
-                },
-                {
-                    day: 3,
-                    title: "Whangarei to Bay of Islands",
-                    distance: "75 km",
-                    driveTime: "1 hour",
-                    highlights: ["Waitangi Treaty Grounds", "Paihia Waterfront", "Russell Ferry", "Haruru Falls"],
-                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=Bay of Islands New Zealand turquoise water sailboats historic buildings&w=800&h=400&style=realistic"
-                },
-                {
-                    day: 4,
-                    title: "Bay of Islands to Karikari Peninsula",
-                    distance: "130 km",
-                    driveTime: "2 hours",
-                    highlights: ["Matai Bay", "Karikari Peninsula", "Doubtless Bay"],
-                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=white sand beach clear turquoise water pohutukawa trees Northland New Zealand&w=800&h=400&style=realistic"
-                },
-                {
-                    day: 5,
-                    title: "Karikari to Cape Reinga",
-                    distance: "110 km",
-                    driveTime: "1.5 hours",
-                    highlights: ["Cape Reinga", "Te Paki Sand Dunes", "Tapotupotu Bay", "Ninety Mile Beach"],
-                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=lighthouse on cliff edge meeting of oceans Cape Reinga New Zealand dramatic&w=800&h=400&style=realistic"
-                },
-                {
-                    day: 6,
-                    title: "Cape Reinga to Opononi (West Coast)",
-                    distance: "140 km",
-                    driveTime: "2.5 hours",
-                    highlights: ["Waipoua Forest", "Tane Mahuta", "Te Matua Ngahere", "Waiotemarama Waterfall"],
-                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=massive ancient kauri tree towering in rainforest New Zealand&w=800&h=400&style=realistic"
-                },
-                {
-                    day: 7,
-                    title: "Hokianga to Auckland (West Coast)",
-                    distance: "220 km",
-                    driveTime: "3-3.5 hours",
-                    highlights: ["Koutu Boulders", "Wairere Boulders", "Dargaville", "Kaipara Harbour"],
-                    image: "https://cdn.simulationtheory.ai/gasset/?asset=img&prompt=spherical boulders on beach at low tide New Zealand unique geology&w=800&h=400&style=realistic"
-                }
-            ];
-        
-
             const practicalTips = [
                 {
                     icon: "fa-car",
                     title: "Vehicle Requirements",
-                    content: "Your Toyota Estima must be self-contained (certified) for freedom camping. Display your self-containment sticker. Carry a portable toilet even if certified - some sites require it visible."
+                    content: "Your Toyota Estima must be self-contained (certified) for freedom camping. Display your self-containment sticker. Carry a portable toilet even if certified."
                 },
                 {
                     icon: "fa-mobile-alt",
                     title: "Freedom Camping App",
-                    content: "Download the 'Rankers Camping NZ' app or 'CamperMate' for real-time campsite locations, reviews, and availability."
+                    content: "Download 'Rankers Camping NZ' or 'CamperMate' for real-time campsite locations, reviews, and availability."
                 },
                 {
                     icon: "fa-dollar-sign",
                     title: "Budget Estimate",
-                    content: "Total 7 days: $200-300 for campsites (mix of free and paid). Fuel: ~$150-200. Food: your choice. Attractions: Waitangi $50pp, Wairere Boulders $15pp."
+                    content: "Total 7 days: $200-300 for campsites. Fuel: ~$150-200. Attractions: Waitangi $50pp, Wairere Boulders $15pp."
                 },
                 {
                     icon: "fa-clock",
                     title: "Best Timing",
-                    content: "Leave early for popular campsites (Matai Bay, Tapotupotu). Check tide times for Mangawhai walk (only return via beach at low tide)."
+                    content: "Leave early for popular campsites. Check tide times for Mangawhai walk (only return via beach at low tide)."
                 },
                 {
                     icon: "fa-tshirt",
                     title: "Pack Essentials",
-                    content: "Boogie board for sand dunes, good walking shoes, sun protection, insect repellent, warm layers (evenings can be cool), camera, swimmers."
+                    content: "Boogie board for sand dunes, walking shoes, sun protection, insect repellent, warm layers, swimmers."
                 },
                 {
                     icon: "fa-tree",
                     title: "Kauri Dieback",
-                    content: "Clean shoes at stations before/after forest walks to protect kauri trees. Stay on marked tracks in Waipoua Forest."
+                    content: "Clean shoes at stations before/after forest walks. Stay on marked tracks in Waipoua Forest to protect the trees."
                 }
             ];
 
-            const downloadCSV = () => {
-                const allData = days.flatMap(day => {
-                    return day.stops.map(stop => ({
-                        Day: day.day,
-                        Date: day.title,
-                        Stop_Type: stop.type,
-                        Name: stop.name,
-                        Description: stop.description,
-                        Difficulty: stop.difficulty || 'N/A',
-                        Time: stop.time || 'N/A'
-                    }));
-                });
-                
-                window.save_data_to_csv("tom_ella_northland_itinerary.csv", allData);
-            };
-
             const currentDay = days.find(d => d.day === selectedDay);
+            const [reverseSelectedDay, setReverseSelectedDay] = useState(1);
+            const currentReverseDay = reversedDays.find(d => d.day === reverseSelectedDay);
 
             return (
                 <div className="max-w-6xl mx-auto p-4">
-                    <header className="text-center mb-8 py-8 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-2xl text-white shadow-xl">
-                        <h1 className="text-4xl md:text-5xl font-bold mb-4">🚐 Tom & Ella's Northland Adventure</h1>
-                        <p className="text-xl md:text-2xl font-light">7-Day Road Trip Itinerary • Toyota Estima • East Coast Up, West Coast Down</p>
-                        <p className="mt-4 text-sm opacity-90">Total Distance: ~800 km • Total Drive Time: ~13 hours</p>
+                    <header className="text-center mb-6 py-6 md:py-8 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-2xl text-white shadow-xl">
+                        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3">🚐 Tom & Ella's Northland Adventure</h1>
+                        <p className="text-base md:text-xl lg:text-2xl font-light">7-Day Road Trip • Toyota Estima</p>
+                        <p className="mt-2 text-xs md:text-sm opacity-90">Total: ~800 km • ~13 hours driving</p>
                     </header>
 
-                    <div className="flex flex-wrap justify-center gap-4 mb-6">
+                    <div className="flex flex-wrap justify-center gap-2 mb-6">
                         <button 
                             onClick={() => setActiveTab('itinerary')}
-                            className={`px-6 py-3 rounded-full font-semibold transition-all ${activeTab === 'itinerary' ? 'bg-blue-600 text-white shadow-lg' : 'bg-white text-gray-700 hover:bg-blue-50'}`}
+                            className={`px-3 py-2 md:px-6 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all ${activeTab === 'itinerary' ? 'bg-blue-600 text-white shadow-lg' : 'bg-white text-gray-700 hover:bg-blue-50'}`}
                         >
-                            <i className="fas fa-route mr-2"></i>Day by Day
-                        </button>
-                        <button 
-                            onClick={() => setActiveTab('tips')}
-                            className={`px-6 py-3 rounded-full font-semibold transition-all ${activeTab === 'tips' ? 'bg-blue-600 text-white shadow-lg' : 'bg-white text-gray-700 hover:bg-blue-50'}`}
-                        >
-                            <i className="fas fa-lightbulb mr-2"></i>Practical Tips
+                            🗺️ West Coast Up
                         </button>
                         <button 
                             onClick={() => setActiveTab('reverse')}
-                            className={`px-6 py-3 rounded-full font-semibold transition-all ${activeTab === 'reverse' ? 'bg-blue-600 text-white shadow-lg' : 'bg-white text-gray-700 hover:bg-blue-50'}`}
+                            className={`px-3 py-2 md:px-6 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all ${activeTab === 'reverse' ? 'bg-blue-600 text-white shadow-lg' : 'bg-white text-gray-700 hover:bg-blue-50'}`}
                         >
-                            <i className="fas fa-exchange-alt mr-2"></i>Reverse Route
+                            🔄 East Coast Up
                         </button>
                         <button 
-                            onClick={downloadCSV}
-                            className="px-6 py-3 rounded-full font-semibold bg-emerald-500 text-white hover:bg-emerald-600 transition-all shadow-lg"
+                            onClick={() => setActiveTab('tips')}
+                            className={`px-3 py-2 md:px-6 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all ${activeTab === 'tips' ? 'bg-blue-600 text-white shadow-lg' : 'bg-white text-gray-700 hover:bg-blue-50'}`}
                         >
-                            <i className="fas fa-download mr-2"></i>Download CSV
+                            💡 Tips
                         </button>
                     </div>
 
                     {activeTab === 'itinerary' && (
                         <div>
-                            <div className="flex flex-wrap justify-center gap-2 mb-6">
+                            <div className="flex flex-wrap justify-center gap-1 md:gap-2 mb-4 md:mb-6">
                                 {days.map((day) => (
                                     <button
                                         key={day.day}
                                         onClick={() => setSelectedDay(day.day)}
-                                        className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${selectedDay === day.day ? 'bg-emerald-500 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-emerald-50'}`}
+                                        className={`px-2 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-semibold transition-all ${selectedDay === day.day ? 'bg-emerald-500 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-emerald-50'}`}
                                     >
                                         Day {day.day}
                                     </button>
                                 ))}
                             </div>
 
-                            <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
-                                <div className="relative h-64 md:h-80">
+                            <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-6 md:mb-8">
+                                <div className="relative h-48 md:h-64 lg:h-80">
                                     <img src={currentDay.image} alt={currentDay.title} className="w-full h-full object-cover" />
-                                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                                        <h2 className="text-3xl font-bold text-white">{currentDay.title}</h2>
-                                        <p className="text-white/90 mt-2">{currentDay.distance} • {currentDay.driveTime}</p>
+                                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 md:p-6">
+                                        <h2 className="text-lg md:text-2xl lg:text-3xl font-bold text-white">{currentDay.title}</h2>
+                                        <p className="text-white/90 mt-1 text-sm md:text-base">{currentDay.distance} • {currentDay.driveTime}</p>
                                     </div>
                                 </div>
 
-                                <div className="p-6">
-                                    <div className="flex flex-wrap gap-2 mb-6">
+                                <div className="p-4 md:p-6">
+                                    <div className="flex flex-wrap gap-1 md:gap-2 mb-4 md:mb-6">
                                         {currentDay.highlights.map((highlight, idx) => (
-                                            <span key={idx} className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium">
-                                                <i className="fas fa-star mr-1"></i>{highlight}
+                                            <span key={idx} className="px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-medium">
+                                                ✨ {highlight}
                                             </span>
                                         ))}
                                     </div>
 
-                                    <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                                         <div>
-                                            <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
-                                                <i className="fas fa-map-marker-alt text-blue-500 mr-2"></i>Places to See & Walks
+                                            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4 flex items-center">
+                                                📍 Places to See & Walks
                                             </h3>
-                                            <div className="space-y-4">
+                                            <div className="space-y-3 md:space-y-4">
                                                 {currentDay.stops.map((stop, idx) => (
-                                                    <div key={idx} className="border-l-4 border-blue-500 pl-4 py-2">
-                                                        <div className="flex items-center gap-2 mb-1">
-                                                            {stop.type === 'walk' && <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-semibold">WALK</span>}
-                                                            {stop.type === 'highlight' && <span className="px-2 py-1 bg-amber-100 text-amber-700 rounded text-xs font-semibold">MUST SEE</span>}
-                                                            {stop.type === 'stop' && <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-semibold">STOP</span>}
-                                                            <h4 className="font-bold text-gray-800">{stop.name}</h4>
+                                                    <div key={idx} className="border-l-4 border-blue-500 pl-3 md:pl-4 py-1 md:py-2">
+                                                        <div className="flex flex-wrap items-center gap-1 md:gap-2 mb-1">
+                                                            {stop.type === 'walk' && <span className="px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs font-semibold">WALK</span>}
+                                                            {stop.type === 'highlight' && <span className="px-2 py-0.5 bg-amber-100 text-amber-700 rounded text-xs font-semibold">MUST SEE</span>}
+                                                            {stop.type === 'stop' && <span className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-xs font-semibold">STOP</span>}
+                                                            {stop.type === 'drive' && <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs font-semibold">DRIVE</span>}
+                                                            {stop.type === 'end' && <span className="px-2 py-0.5 bg-purple-100 text-purple-700 rounded text-xs font-semibold">FINISH</span>}
+                                                            <h4 className="font-bold text-gray-800 text-sm md:text-base">{stop.name}</h4>
                                                         </div>
                                                         {stop.difficulty && (
-                                                            <p className="text-sm text-gray-500 mb-1">
-                                                                <i className="fas fa-hiking mr-1"></i>{stop.difficulty} • {stop.time}
+                                                            <p className="text-xs text-gray-500 mb-1">
+                                                                🥾 {stop.difficulty} • {stop.time}
                                                             </p>
                                                         )}
-                                                        <p className="text-gray-600 text-sm">{stop.description}</p>
+                                                        <p className="text-gray-600 text-xs md:text-sm leading-relaxed">{stop.description}</p>
                                                     </div>
                                                 ))}
                                             </div>
                                         </div>
 
                                         <div>
-                                            <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
-                                                <i className="fas fa-campground text-emerald-500 mr-2"></i>Where to Stay
+                                            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4 flex items-center">
+                                                ⛺ Where to Stay
                                             </h3>
-                                            <div className="space-y-4">
+                                            <div className="space-y-3 md:space-y-4">
                                                 {currentDay.camping.map((camp, idx) => (
-                                                    <div key={idx} className="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl p-4">
-                                                        <div className="flex justify-between items-start mb-2">
-                                                            <h4 className="font-bold text-gray-800">{camp.name}</h4>
-                                                            <span className="px-2 py-1 bg-emerald-500 text-white rounded text-sm font-semibold">{camp.cost}</span>
+                                                    <div key={idx} className="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl p-3 md:p-4">
+                                                        <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1 md:gap-2 mb-2">
+                                                            <h4 className="font-bold text-gray-800 text-sm md:text-base">{camp.name}</h4>
+                                                            <span className="px-2 py-1 bg-emerald-500 text-white rounded text-xs font-semibold self-start">{camp.cost}</span>
                                                         </div>
-                                                        <p className="text-sm text-gray-600 mb-2">
+                                                        <p className="text-xs text-gray-600 mb-2">
                                                             <span className="font-semibold text-emerald-700">{camp.type}</span> • {camp.facilities}
                                                         </p>
-                                                        <p className="text-sm text-gray-500 italic">{camp.note}</p>
+                                                        <p className="text-xs text-gray-500 italic">{camp.note}</p>
                                                     </div>
                                                 ))}
                                             </div>
 
-                                            <div className="mt-6 p-4 bg-amber-50 rounded-xl border border-amber-200">
-                                                <h4 className="font-bold text-amber-800 mb-2 flex items-center">
-                                                    <i className="fas fa-lightbulb mr-2"></i>Pro Tip
-                                                </h4>
-                                                <p className="text-sm text-amber-700">
-                                                    Book campsites in advance when possible (DOC campsites can be booked online). Have backup options as popular spots fill up fast in summer!
+                                            <div className="mt-4 md:mt-6 p-3 md:p-4 bg-amber-50 rounded-xl border border-amber-200">
+                                                <h4 className="font-bold text-amber-800 mb-1 md:mb-2 text-sm md:text-base">💡 Pro Tip</h4>
+                                                <p className="text-xs md:text-sm text-amber-700">
+                                                    Book campsites in advance when possible. Have backup options as popular spots fill up fast in summer!
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div className="grid md:grid-cols-3 gap-4">
-                                <div className="bg-white p-6 rounded-xl shadow-md text-center">
-                                    <i className="fas fa-road text-4xl text-blue-500 mb-3"></i>
-                                    <h4 className="font-bold text-gray-800">Total Distance</h4>
-                                    <p className="text-2xl font-bold text-blue-600">~800 km</p>
-                                </div>
-                                <div className="bg-white p-6 rounded-xl shadow-md text-center">
-                                    <i className="fas fa-clock text-4xl text-emerald-500 mb-3"></i>
-                                    <h4 className="font-bold text-gray-800">Driving Time</h4>
-                                    <p className="text-2xl font-bold text-emerald-600">~13 hours</p>
-                                </div>
-                                <div className="bg-white p-6 rounded-xl shadow-md text-center">
-                                    <i className="fas fa-hiking text-4xl text-amber-500 mb-3"></i>
-                                    <h4 className="font-bold text-gray-800">Walks Included</h4>
-                                    <p className="text-2xl font-bold text-amber-600">10+ Tracks</p>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {activeTab === 'tips' && (
-                        <div className="grid md:grid-cols-2 gap-6">
-                            {practicalTips.map((tip, idx) => (
-                                <div key={idx} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-                                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                                        <i className={`fas ${tip.icon} text-2xl text-blue-600`}></i>
-                                    </div>
-                                    <h3 className="text-lg font-bold text-gray-800 mb-2">{tip.title}</h3>
-                                    <p className="text-gray-600">{tip.content}</p>
-                                </div>
-                            ))}
-                            
-                            <div className="md:col-span-2 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-xl shadow-lg p-6 text-white">
-                                <h3 className="text-xl font-bold mb-4 flex items-center">
-                                    <i className="fas fa-heart mr-2"></i>Remember
-                                </h3>
-                                <p className="mb-4">Northland is subtropical - expect warm days but pack layers for cool evenings. The roads are generally good but some campsites are on gravel roads. Take your time and enjoy the laid-back atmosphere!</p>
-                                <div className="flex flex-wrap gap-3">
-                                    <span className="px-3 py-1 bg-white/20 rounded-full text-sm">Respect nature</span>
-                                    <span className="px-3 py-1 bg-white/20 rounded-full text-sm">Support local</span>
-                                    <span className="px-3 py-1 bg-white/20 rounded-full text-sm">Leave no trace</span>
-                                    <span className="px-3 py-1 bg-white/20 rounded-full text-sm">Have fun!</span>
                                 </div>
                             </div>
                         </div>
@@ -719,53 +957,119 @@
 
                     {activeTab === 'reverse' && (
                         <div>
-                            <div className="bg-blue-50 rounded-xl p-6 mb-6 border border-blue-200">
-                                <h3 className="text-xl font-bold text-blue-800 mb-2 flex items-center">
-                                    <i className="fas fa-exchange-alt mr-2"></i>West Coast Up, East Coast Down
-                                </h3>
-                                <p className="text-blue-700">
-                                    This is the reverse direction - going up the Hokianga/West Coast first, then returning down the East Coast. Good if you want to hit the giant trees and sand dunes early!
+                            <div className="bg-blue-50 rounded-xl p-4 md:p-6 mb-4 md:mb-6 border border-blue-200">
+                                <h3 className="text-base md:text-xl font-bold text-blue-800 mb-2">🔄 East Coast Up, West Coast Down</h3>
+                                <p className="text-xs md:text-sm text-blue-700">
+                                    This alternative route goes up the East Coast first through Mangawhai, Whangarei, and Bay of Islands, then returns down the West Coast.
                                 </p>
                             </div>
 
-                            <div className="space-y-4">
+                            <div className="flex flex-wrap justify-center gap-1 md:gap-2 mb-4 md:mb-6">
                                 {reversedDays.map((day) => (
-                                    <div key={day.day} className="bg-white rounded-xl shadow-md overflow-hidden">
-                                        <div className="flex flex-col md:flex-row">
-                                            <div className="md:w-48 h-48 md:h-auto">
-                                                <img src={day.image} alt={day.title} className="w-full h-full object-cover" />
-                                            </div>
-                                            <div className="p-6 flex-1">
-                                                <div className="flex items-center gap-3 mb-2">
-                                                    <span className="px-3 py-1 bg-blue-600 text-white rounded-full text-sm font-bold">Day {day.day}</span>
-                                                    <span className="text-gray-500 text-sm">{day.distance} • {day.driveTime}</span>
-                                                </div>
-                                                <h3 className="text-xl font-bold text-gray-800 mb-2">{day.title}</h3>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {day.highlights.map((h, i) => (
-                                                        <span key={i} className="text-sm text-gray-600">
-                                                            <i className="fas fa-check text-emerald-500 mr-1"></i>{h}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <button
+                                        key={day.day}
+                                        onClick={() => setReverseSelectedDay(day.day)}
+                                        className={`px-2 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-semibold transition-all ${reverseSelectedDay === day.day ? 'bg-blue-500 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-blue-50'}`}
+                                    >
+                                        Day {day.day}
+                                    </button>
                                 ))}
                             </div>
 
-                            <div className="mt-6 p-4 bg-emerald-50 rounded-xl border border-emerald-200 text-center">
-                                <p className="text-emerald-800 font-semibold">
-                                    <i className="fas fa-info-circle mr-2"></i>
-                                    Both routes are stunning! The original itinerary (East up, West down) has you finishing with the dramatic Waipoua Forest drive.
-                                </p>
+                            <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-6 md:mb-8">
+                                <div className="relative h-48 md:h-64 lg:h-80">
+                                    <img src={currentReverseDay.image} alt={currentReverseDay.title} className="w-full h-full object-cover" />
+                                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 md:p-6">
+                                        <h2 className="text-lg md:text-2xl lg:text-3xl font-bold text-white">{currentReverseDay.title}</h2>
+                                        <p className="text-white/90 mt-1 text-sm md:text-base">{currentReverseDay.distance} • {currentReverseDay.driveTime}</p>
+                                    </div>
+                                </div>
+
+                                <div className="p-4 md:p-6">
+                                    <div className="flex flex-wrap gap-1 md:gap-2 mb-4 md:mb-6">
+                                        {currentReverseDay.highlights.map((highlight, idx) => (
+                                            <span key={idx} className="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">
+                                                ✨ {highlight}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+                                        <div>
+                                            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4">📍 Places to See</h3>
+                                            <div className="space-y-3 md:space-y-4">
+                                                {currentReverseDay.stops.map((stop, idx) => (
+                                                    <div key={idx} className="border-l-4 border-blue-500 pl-3 md:pl-4 py-1 md:py-2">
+                                                        <div className="flex flex-wrap items-center gap-1 md:gap-2 mb-1">
+                                                            {stop.type === 'walk' && <span className="px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs font-semibold">WALK</span>}
+                                                            {stop.type === 'highlight' && <span className="px-2 py-0.5 bg-amber-100 text-amber-700 rounded text-xs font-semibold">MUST SEE</span>}
+                                                            {stop.type === 'stop' && <span className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-xs font-semibold">STOP</span>}
+                                                            {stop.type === 'drive' && <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs font-semibold">DRIVE</span>}
+                                                            {stop.type === 'end' && <span className="px-2 py-0.5 bg-purple-100 text-purple-700 rounded text-xs font-semibold">FINISH</span>}
+                                                            <h4 className="font-bold text-gray-800 text-sm md:text-base">{stop.name}</h4>
+                                                        </div>
+                                                        {stop.difficulty && (
+                                                            <p className="text-xs text-gray-500 mb-1">
+                                                                🥾 {stop.difficulty} • {stop.time}
+                                                            </p>
+                                                        )}
+                                                        <p className="text-gray-600 text-xs md:text-sm">{stop.description}</p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4">⛺ Where to Stay</h3>
+                                            <div className="space-y-3 md:space-y-4">
+                                                {currentReverseDay.camping.map((camp, idx) => (
+                                                    <div key={idx} className="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl p-3 md:p-4">
+                                                        <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1 md:gap-2 mb-2">
+                                                            <h4 className="font-bold text-gray-800 text-sm md:text-base">{camp.name}</h4>
+                                                            <span className="px-2 py-1 bg-emerald-500 text-white rounded text-xs font-semibold self-start">{camp.cost}</span>
+                                                        </div>
+                                                        <p className="text-xs text-gray-600 mb-2">
+                                                            <span className="font-semibold text-emerald-700">{camp.type}</span> • {camp.facilities}
+                                                        </p>
+                                                        <p className="text-xs text-gray-500 italic">{camp.note}</p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     )}
 
-                    <footer className="mt-12 text-center text-gray-500 text-sm pb-8">
-                        <p>Safe travels Tom and Ella! 🚐🌊🌲</p>
-                        <p className="mt-2">Created with ❤️ for your Northland adventure</p>
+                    {activeTab === 'tips' && (
+                        <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+                            {practicalTips.map((tip, idx) => (
+                                <div key={idx} className="bg-white rounded-xl shadow-lg p-4 md:p-6 hover:shadow-xl transition-shadow">
+                                    <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-100 rounded-full flex items-center justify-center mb-3 md:mb-4">
+                                        <span className="text-xl md:text-2xl">💡</span>
+                                    </div>
+                                    <h3 className="text-base md:text-lg font-bold text-gray-800 mb-2">{tip.title}</h3>
+                                    <p className="text-xs md:text-sm text-gray-600 leading-relaxed">{tip.content}</p>
+                                </div>
+                            ))}
+                    
+                            <div className="md:col-span-2 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-xl shadow-lg p-4 md:p-6 text-white">
+                                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">❤️ Remember</h3>
+                                <p className="text-xs md:text-sm mb-3 md:mb-4 leading-relaxed">Northland is subtropical - expect warm days but pack layers for cool evenings. The roads are generally good but some campsites are on gravel roads. Take your time and enjoy the laid-back atmosphere!</p>
+                                <div className="flex flex-wrap gap-2">
+                                    <span className="px-3 py-1 bg-white/20 rounded-full text-xs md:text-sm">🌿 Respect nature</span>
+                                    <span className="px-3 py-1 bg-white/20 rounded-full text-xs md:text-sm">🏪 Support local</span>
+                                    <span className="px-3 py-1 bg-white/20 rounded-full text-xs md:text-sm">🗑️ Leave no trace</span>
+                                    <span className="px-3 py-1 bg-white/20 rounded-full text-xs md:text-sm">😊 Have fun!</span>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    <footer className="mt-8 md:mt-12 text-center text-gray-500 text-xs md:text-sm pb-6 md:pb-8">
+                        <p className="mb-1">Safe travels Tom and Ella! 🚐🌊🌲</p>
+                        <p>Created with ❤️ for your Northland adventure</p>
                     </footer>
                 </div>
             );
